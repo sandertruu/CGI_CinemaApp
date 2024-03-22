@@ -11,6 +11,7 @@ Functionalities to implement on the frontend:
 ## Running the backend
 
 ```cd ../path/to/project/cinema-backend```
+
 ```java -jar target/cinema-backend-0.0.1-SNAPSHOT.jar```
 
 ## Or with docker
@@ -20,5 +21,7 @@ Functionalities to implement on the frontend:
 ## Running the frontend
 
 ```cd ../path/to/project/cinema-frontend```
+
 ```npm install```
+
 ```npm run dev```
