@@ -17,13 +17,12 @@ public class Schedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "fk_movie")
-    private Movie movie;
+    @Column(name = "movie_id")
+    private Long movieId;
 
     @Column(name = "start_time")
     private StartTime startTime;
 
-    @Column(name="week_day")
+    @Column(name="weekday")
     private WeekDay weekDay;
 }

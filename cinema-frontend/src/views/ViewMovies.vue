@@ -1,18 +1,19 @@
 <template>
-    <main>
-        <section class="movies">
-           
-            <ul>
-                <div class="movie" v-for="movie in movies" :key="movie.id">
-                    <div class="moviename"> {{ movie.name }} </div> <br />
-                    <a class="singlepost">
-                        <span class="body"> {{ movie.weekday }}</span> <br />
-                    </a>
-                </div>
-            </ul>
-        </section>
-    </main>
-</template>
+    <div>
+      <h1>Movies</h1>
+      <div v-if="movies.length === 0">
+        <p>No movies available</p>
+      </div>
+      <div v-else>
+        <div v-for="(movie, index) in movies" :key="index" class="movie-card">
+          <h2>{{ movie.name }}</h2>
+          <p><strong>Genre:</strong> {{ movie.genre }}</p>
+          <p><strong>Language:</strong> {{ movie.language }}</p>
+          <p><strong>Age Restriction:</strong> {{ movie.ageRestriction }}</p>
+        </div>
+      </div>
+    </div>
+  </template>
 
 <script>
 
@@ -32,11 +33,14 @@ export default {
     methods: {
         getMovies(){
             fetch('http://localhost:9090/allmovies')
-            .then(res => res.json)
+            .then(res => res.json())
             .then(data => {
                 this.movies = data
                 console.log(data)
             })
+            .catch(error => {
+              console.error("Error fetching movies:", error);
+            });  
         },
         getMoviesByWeekDay(weekday){
             fetch(`http://localhost:9090/movies-by-weekday/${weekday}`)
@@ -46,7 +50,22 @@ export default {
                 console.log(data)
             })
         }
+    },
+
+    beforeMount(){
+      this.getMovies();
     }
 }
 
 </script>
+
+<style>
+
+
+.movie-card {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+</style>

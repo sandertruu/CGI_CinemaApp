@@ -33,6 +33,4 @@ public class Movie {
     @Column(name = "language")
     private Language language;
 
-    @OneToMany(mappedBy = "movie")
-    private List<Schedule> schedule= new ArrayList<Schedule>();
 }

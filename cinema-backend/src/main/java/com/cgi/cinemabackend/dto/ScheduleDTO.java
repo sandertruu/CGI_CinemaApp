@@ -14,7 +14,7 @@ import lombok.*;
 public class ScheduleDTO {
 
     private Long id;
-    private MovieDTO movie;
+    private Long movieId;
     private StartTime startTime;
     private WeekDay weekDay;
 }
