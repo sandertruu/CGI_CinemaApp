@@ -17,6 +17,12 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private ModelMapper modelMapper;
+
+    /**
+     * logib kasutaja sisse võrreldes hetkel lihtsalt plain text paroole
+     * @param user kasutaja andmed
+     * @return leitud kasutaja DTO
+     */
     @Override
     public UserDTO login(User user) {
         List<User> users = userRepository.findAll();
