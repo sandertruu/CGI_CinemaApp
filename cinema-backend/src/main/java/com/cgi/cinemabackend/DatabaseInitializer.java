@@ -2,6 +2,7 @@ package com.cgi.cinemabackend;
 
 import com.cgi.cinemabackend.models.Movie;
 import com.cgi.cinemabackend.models.Schedule;
+import com.cgi.cinemabackend.models.User;
 import com.cgi.cinemabackend.models.filters.WeekDay;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -46,6 +47,11 @@ public class DatabaseInitializer implements ApplicationListener<ContextRefreshed
 
         };
 
+        User[] users = {
+            new User(1L, "test1@test.com", "password"),
+            new User(2L, "test2@test.com", "secret")
+        };
+
         for (Movie movie : movies) {
             try {
                 insertMovie(movie);
@@ -58,6 +64,13 @@ public class DatabaseInitializer implements ApplicationListener<ContextRefreshed
             try {
                 insertSchedule(schedule1);
             } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        for (User user : users) {
+            try{
+                insertUser(user);
+            }catch (SQLException e){
                 throw new RuntimeException(e);
             }
         }
@@ -96,6 +109,19 @@ public class DatabaseInitializer implements ApplicationListener<ContextRefreshed
         stmt.executeUpdate();
         con.close();
 
+    }
+
+    public void insertUser(User user) throws SQLException {
+        String query = "INSERT INTO users(email, password) VALUES(?,?)";
+
+        Connection con = DriverManager.getConnection("jdbc:h2:mem:cinemadb", "admin", "admin");
+        PreparedStatement stmt = con.prepareStatement(query);
+
+        stmt.setString(1, user.getEmail());
+        stmt.setString(2, user.getPassword());
+
+        stmt.executeUpdate();
+        con.close();
     }
 
 }
