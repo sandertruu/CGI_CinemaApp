@@ -1,6 +1,9 @@
 package com.cgi.cinemabackend.models.filters;
 
+import lombok.Getter;
+
 //Samuti võetud Apollo kino filtrite eeskujul
+@Getter
 public enum Genre {
     ACTION(1, "Action"),
     COMEDY(2, "Comedy"),

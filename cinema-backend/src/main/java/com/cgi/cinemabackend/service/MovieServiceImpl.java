@@ -4,16 +4,25 @@ import com.cgi.cinemabackend.dto.MovieDTO;
 import com.cgi.cinemabackend.dto.ScheduleDTO;
 import com.cgi.cinemabackend.models.Movie;
 import com.cgi.cinemabackend.models.Schedule;
+import com.cgi.cinemabackend.models.filters.Genre;
 import com.cgi.cinemabackend.models.filters.WeekDay;
 import com.cgi.cinemabackend.repository.MovieRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static com.cgi.cinemabackend.models.filters.AgeRestriction.PEREFILM;
+import static com.cgi.cinemabackend.models.filters.Genre.THRILLER;
+import static com.cgi.cinemabackend.models.filters.Language.ENGLISH;
 
 @Service
 public class MovieServiceImpl implements MovieService{
@@ -55,4 +64,9 @@ public class MovieServiceImpl implements MovieService{
                 .collect(Collectors.toList());
         return movieDTOS;
     }
+
+
+
+
+
 }

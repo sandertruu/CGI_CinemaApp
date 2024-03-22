@@ -1,6 +1,9 @@
 package com.cgi.cinemabackend.models.filters;
 
+import lombok.Getter;
+
 //Samuti võetud Apollo kino filtrite eeskujul
+@Getter
 public enum Language {
 
     ESTONIAN(1, "Estonian"),

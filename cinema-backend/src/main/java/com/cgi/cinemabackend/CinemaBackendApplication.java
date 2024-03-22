@@ -13,6 +13,7 @@ public class CinemaBackendApplication {
         return new ModelMapper();
     }
 
+
     public static void main(String[] args) {
         SpringApplication.run(CinemaBackendApplication.class, args);
     }

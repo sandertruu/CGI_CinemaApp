@@ -1,9 +1,11 @@
 package com.cgi.cinemabackend.service;
 
 import com.cgi.cinemabackend.dto.MovieDTO;
+import com.cgi.cinemabackend.models.Movie;
 import com.cgi.cinemabackend.models.filters.WeekDay;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -13,5 +15,7 @@ public interface MovieService {
     public MovieDTO findMovieInfoById(int id);
 
     public List<MovieDTO> findAllMoviesByWeekDay(WeekDay weekDay);
+
+
 
 }
